@@ -20,8 +20,8 @@
     </v-app-bar>
 
     <v-content>
-      <!-- <HelloWorld /> -->
-      <v-container fluid>
+      <router-view></router-view>
+      <!-- <v-container fluid>
         <v-row align="center" justify="center">
           <v-col cols="10">
             <v-card>
@@ -76,7 +76,7 @@
             </v-card>
           </v-col>
         </v-row>
-      </v-container>
+      </v-container> -->
     </v-content>
 
     <v-footer :inset="footer.inset" app>
@@ -86,14 +86,8 @@
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld";
-
 export default {
   name: "App",
-
-  components: {
-    // HelloWorld
-  },
 
   data: () => ({
     drawers: ["Default (no property)", "Permanent", "Temporary"],
