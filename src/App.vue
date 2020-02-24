@@ -9,74 +9,31 @@
       :temporary="primaryDrawer.type === 'temporary'"
       app
       overflow
-    />
+    >
+      <v-list dense>
+        <v-list-item v-for="(menu, i) in menus" :key="i" :to="menu.link" link>
+          <v-list-item-action>
+            <v-icon>{{ menu.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title> {{ menu.text }} </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
     <v-app-bar :clipped-left="primaryDrawer.clipped" app>
       <v-app-bar-nav-icon
         v-if="primaryDrawer.type !== 'permanent'"
         @click.stop="primaryDrawer.model = !primaryDrawer.model"
       />
-      <v-toolbar-title>Vuetify</v-toolbar-title>
+      <v-toolbar-title>PocketMemo</v-toolbar-title>
     </v-app-bar>
 
     <v-content>
-      <router-view></router-view>
-      <!-- <v-container fluid>
-        <v-row align="center" justify="center">
-          <v-col cols="10">
-            <v-card>
-              <v-card-text>
-                <v-row>
-                  <v-col cols="12" md="6">
-                    <span>Scheme</span>
-                    <v-switch
-                      v-model="$vuetify.theme.dark"
-                      primary
-                      label="Dark"
-                    />
-                  </v-col>
-                  <v-col cols="12" md="6">
-                    <span>Drawer</span>
-                    <v-radio-group v-model="primaryDrawer.type" column>
-                      <v-radio
-                        v-for="drawer in drawers"
-                        :key="drawer"
-                        :label="drawer"
-                        :value="drawer.toLowerCase()"
-                        primary
-                      />
-                    </v-radio-group>
-                    <v-switch
-                      v-model="primaryDrawer.clipped"
-                      label="Clipped"
-                      primary
-                    />
-                    <v-switch
-                      v-model="primaryDrawer.floating"
-                      label="Floating"
-                      primary
-                    />
-                    <v-switch
-                      v-model="primaryDrawer.mini"
-                      label="Mini"
-                      primary
-                    />
-                  </v-col>
-                  <v-col cols="12" md="6">
-                    <span>Footer</span>
-                    <v-switch v-model="footer.inset" label="Inset" primary />
-                  </v-col>
-                </v-row>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn text>Cancel</v-btn>
-                <v-btn text color="primary">Submit</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container> -->
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
     </v-content>
 
     <v-footer :inset="footer.inset" app>
@@ -100,11 +57,18 @@ export default {
     },
     footer: {
       inset: false
-    }
+    },
+    menus: [
+      { text: "Home", icon: "mdi-home", link: "/" },
+      { text: "About", icon: "mdi-contact-mail", link: "About" },
+      { text: "Testing", icon: "mdi-bug", link: "Test" }
+    ]
   }),
 
   created() {
     // this.$vuetify.theme.dark = true;
-  }
+  },
+
+  components: {}
 };
 </script>
