@@ -43,22 +43,6 @@
 </template>
 
 <script>
-import * as firebase from "firebase";
-
-var firebaseConfig = {
-  apiKey: "AIzaSyBZhHFEnBJaKpu2EZnjPBR1IEe9HiUllZM",
-  authDomain: "pocketmemo-1b609.firebaseapp.com",
-  databaseURL: "https://pocketmemo-1b609.firebaseio.com",
-  projectId: "pocketmemo-1b609",
-  storageBucket: "pocketmemo-1b609.appspot.com",
-  messagingSenderId: "325435825243",
-  appId: "1:325435825243:web:41cb658726e93cb57b337e",
-  measurementId: "G-T3Q33FKT3F"
-};
-firebase.initializeApp(firebaseConfig);
-
-var db = firebase.firestore();
-
 export default {
   name: "App",
 
@@ -74,35 +58,15 @@ export default {
     footer: {
       inset: false
     },
-    menus: []
+    menus: [
+      { text: "Home", icon: "mdi-home", link: "/" },
+      { text: "About", icon: "mdi-contact-mail", link: "About" },
+      { text: "Testing", icon: "mdi-bug", link: "Test" }
+    ]
   }),
 
-  methods: {
-    getMmenu() {
-      let arr = [];
-      db.collection("mmenus")
-        .where("status", "==", true)
-        // .orderBy("status")
-        .get()
-        .then(querySnapshot => {
-          querySnapshot.forEach(function(doc) {
-            arr.push(doc.data());
-            console.log(doc.data());
-          });
-        });
-      return arr;
-    }
-  },
-
   created() {
-    this.menus = this.getMmenu();
     // this.$vuetify.theme.dark = true;
-    // db.collection("mmenus").onSnapshot(querySnapshot => {
-    //   querySnapshot.forEach(doc => {
-    //     this.menus.push(doc.data());
-    //     console.log(doc.data());
-    //   });
-    // });
   },
 
   components: {}

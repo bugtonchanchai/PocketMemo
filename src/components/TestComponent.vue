@@ -42,103 +42,103 @@
 </template>
 
 <script>
-// import * as firebase from "firebase";
+import * as firebase from "firebase";
 
-// var firebaseConfig = {
-//   apiKey: "AIzaSyBZhHFEnBJaKpu2EZnjPBR1IEe9HiUllZM",
-//   authDomain: "pocketmemo-1b609.firebaseapp.com",
-//   databaseURL: "https://pocketmemo-1b609.firebaseio.com",
-//   projectId: "pocketmemo-1b609",
-//   storageBucket: "pocketmemo-1b609.appspot.com",
-//   messagingSenderId: "325435825243",
-//   appId: "1:325435825243:web:41cb658726e93cb57b337e",
-//   measurementId: "G-T3Q33FKT3F"
-// };
-// // Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
-// // firebase.analytics();
+var firebaseConfig = {
+  apiKey: "AIzaSyBZhHFEnBJaKpu2EZnjPBR1IEe9HiUllZM",
+  authDomain: "pocketmemo-1b609.firebaseapp.com",
+  databaseURL: "https://pocketmemo-1b609.firebaseio.com",
+  projectId: "pocketmemo-1b609",
+  storageBucket: "pocketmemo-1b609.appspot.com",
+  messagingSenderId: "325435825243",
+  appId: "1:325435825243:web:41cb658726e93cb57b337e",
+  measurementId: "G-T3Q33FKT3F"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
 
-// var db = firebase.firestore();
+var db = firebase.firestore();
 
-// export default {
-//   name: "TestComponent",
+export default {
+  name: "TestComponent",
 
-//   data: () => ({
-//     contacts: {},
-//     tel: "",
-//     name: "",
-//     updateTel: "",
-//     updateName: "",
-//     updateKey: ""
-//   }),
+  data: () => ({
+    contacts: {},
+    tel: "",
+    name: "",
+    updateTel: "",
+    updateName: "",
+    updateKey: ""
+  }),
 
-//   methods: {
-//     insertToContact(tel, name) {
-//       let data = {
-//         tel: tel,
-//         name: name
-//       };
-//       db.collection("contacts").add(data);
+  methods: {
+    insertToContact(tel, name) {
+      let data = {
+        tel: tel,
+        name: name
+      };
+      db.collection("contacts").add(data);
 
-//       this.tel = "";
-//       this.name = "";
-//     },
-//     setUpdateContact(key, contact) {
-//       this.updateKey = key;
-//       this.updateTel = contact.tel;
-//       this.updateName = contact.name;
-//     },
-//     updateContact(tel, name) {
-//       // contactRef.child(this.updateKey).update({
-//       //   tel: tel,
-//       //   name: name
-//       //  });
+      this.tel = "";
+      this.name = "";
+    },
+    setUpdateContact(key, contact) {
+      this.updateKey = key;
+      this.updateTel = contact.tel;
+      this.updateName = contact.name;
+    },
+    updateContact(tel, name) {
+      // contactRef.child(this.updateKey).update({
+      //   tel: tel,
+      //   name: name
+      //  });
 
-//       console.log(tel + name);
+      console.log(tel + name);
 
-//       this.updateKey = "";
-//       this.updateTel = "";
-//       this.updateName = "";
-//     },
-//     deleteContact(key) {
-//       // console.log(key);
-//       db.collection("contacts")
-//         .doc(key)
-//         .delete()
-//         .then(function() {
-//           console.log("Document successfuly deleted!");
-//         })
-//         .catch(function(error) {
-//           console.error("Error removing document: ", error);
-//         });
-//     }
-//   },
-//   mounted() {
-//     // db.collection("contacts")
-//     //   .get()
-//     //   .then(querySnapshot => {
-//     //     // this.contacts = querySnapshot.docs;
-//     //     // console.log(this.contacts);
-//     //     let arr = [];
-//     //     querySnapshot.forEach(doc => {
-//     //       arr.push(doc.data());
-//     //     });
-//     //     this.contacts = arr;
-//     //   });
+      this.updateKey = "";
+      this.updateTel = "";
+      this.updateName = "";
+    },
+    deleteContact(key) {
+      // console.log(key);
+      db.collection("contacts")
+        .doc(key)
+        .delete()
+        .then(function() {
+          console.log("Document successfuly deleted!");
+        })
+        .catch(function(error) {
+          console.error("Error removing document: ", error);
+        });
+    }
+  },
+  mounted() {
+    // db.collection("contacts")
+    //   .get()
+    //   .then(querySnapshot => {
+    //     // this.contacts = querySnapshot.docs;
+    //     // console.log(this.contacts);
+    //     let arr = [];
+    //     querySnapshot.forEach(doc => {
+    //       arr.push(doc.data());
+    //     });
+    //     this.contacts = arr;
+    //   });
 
-//     db.collection("contacts").onSnapshot(querySnapshot => {
-//       let arr = [];
-//       querySnapshot.forEach(doc => {
-//         let item = {
-//           id: doc.id,
-//           name: doc.data().name,
-//           tel: doc.data().tel
-//         };
-//         arr.push(item);
-//       });
-//       this.contacts = arr;
-//       console.log(this.contacts);
-//     });
-//   }
-// };
+    db.collection("contacts").onSnapshot(querySnapshot => {
+      let arr = [];
+      querySnapshot.forEach(doc => {
+        let item = {
+          id: doc.id,
+          name: doc.data().name,
+          tel: doc.data().tel
+        };
+        arr.push(item);
+      });
+      this.contacts = arr;
+      console.log(this.contacts);
+    });
+  }
+};
 </script>
