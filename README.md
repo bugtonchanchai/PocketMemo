@@ -1,8 +1,24 @@
 # pocket-memo
 
-This project use following stack
+## Project setup
+```
+npm install
+```
 
-1. **frontend framwork** : [vueJS](https://vuejs.org/) and [vuetifyjs](https://vuetifyjs.com/)
-2. **database, hosting**  : [firebase](https://firebase.google.com/)
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-preview : [https://pocketmemo-1b609.web.app/](https://pocketmemo-1b609.web.app/)
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
