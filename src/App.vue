@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    
     <v-navigation-drawer
       v-model="primaryDrawer.model"
       :clipped="primaryDrawer.clipped"
