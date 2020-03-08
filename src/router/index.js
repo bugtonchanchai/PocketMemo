@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Test from '../views/Test.vue'
 import MasterConfig from '../views/MasterConfig.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,10 @@ const routes = [
     path: '/MasterConfig',
     name: 'MasterConfig',
     component: MasterConfig
+  }, {
+    path: '/login',
+    name: 'Login',
+    component: Login
   }
 ]
 

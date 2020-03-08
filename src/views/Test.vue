@@ -1,15 +1,17 @@
 <template>
-  <TestComponent />
+  <v-container> </v-container>
 </template>
 
 <script>
-import TestComponent from "@/components/TestComponent.vue";
-
 export default {
   name: "Test",
   components: {
-    TestComponent
-  }
+    // TestComponent
+  },
+  data() {
+    return {};
+  },
+  methods: {}
 };
 </script>
 
