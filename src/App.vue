@@ -1,5 +1,17 @@
 <template>
   <v-app>
+    <v-app-bar :clipped-left="primaryDrawer.clipped" app>
+      <v-app-bar-nav-icon
+        v-if="primaryDrawer.type !== 'permanent'"
+        @click.stop="primaryDrawer.model = !primaryDrawer.model"
+      />
+      <v-toolbar-title>PocketMemo</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn v-if="btnLogoutModel" small color="error" @click="btnLogout_click"
+        >LOGOUT</v-btn
+      >
+    </v-app-bar>
+
     <v-navigation-drawer
       v-model="primaryDrawer.model"
       :clipped="primaryDrawer.clipped"
@@ -27,14 +39,6 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar :clipped-left="primaryDrawer.clipped" app>
-      <v-app-bar-nav-icon
-        v-if="primaryDrawer.type !== 'permanent'"
-        @click.stop="primaryDrawer.model = !primaryDrawer.model"
-      />
-      <v-toolbar-title>PocketMemo</v-toolbar-title>
-    </v-app-bar>
-
     <v-content>
       <v-container fluid>
         <router-view></router-view>
@@ -48,10 +52,13 @@
 </template>
 
 <script>
+import firebase from "firebase";
 import { getMainMenu } from "./js/getMainMenu";
 
 export default {
   name: "App",
+
+  components: {},
 
   data: () => ({
     drawers: ["Default (no property)", "Permanent", "Temporary"],
@@ -65,15 +72,36 @@ export default {
     footer: {
       inset: false
     },
-    mainMenu: []
+    mainMenu: [],
+    btnLogoutModel: false
   }),
 
-  methods: {},
-
-  created() {
-    this.mainMenu = getMainMenu();
+  methods: {
+    btnLogout_click() {
+      this.mainMenu = [];
+      this.btnLogoutModel = false;
+      firebase
+        .auth()
+        .signOut()
+        .then(data => {
+          this.$router.replace({ name: "Login" });
+          console.log(data);
+        })
+        .catch(err => {
+          console.log("error : " + err.message);
+        });
+    }
   },
 
-  components: {}
+  created() {},
+
+  beforeCreate() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.mainMenu = getMainMenu();
+        this.btnLogoutModel = true;
+      }
+    });
+  }
 };
 </script>
